@@ -19,6 +19,9 @@
 
         <!-- Local CSS -->
         <link rel="stylesheet" href="{% static 'css/master.css' %}">
+
+        <!-- Local icons link  -->
+        <link rel="stylesheet" href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}">
     </head>
 
     <body>
@@ -26,20 +29,21 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
-                    <a class="navbar-brand" href=""><img src="{% static 'logo.png' %}" alt="logo not loaded" class="d-inline-block align-top rounded" height="30" width="30">Product Hunt</a>
+                    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt="logo not loaded" class="d-inline-block align-top rounded" height="30" width="30">Product Hunt</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
                             {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'create' %}"><span class="oi oi-plus"></span></a></li>
                             <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                                 <form action="{% url 'logout' %}" method="POST" id="logout">
                                     {% csrf_token %}
                                     <input type="hidden">
                                 </form>
                             {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-danger" href="{% url 'signup' %}">Sign Up</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
                             {% endif %}
                         </ul>
@@ -56,7 +60,7 @@
                 <p>©Sarvesh Joshi {% now "Y" %}</p>
             </div>
             <div class="container">
-                Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a><p class="text-right">Time: {% now "h:m:s" %}</p>
+                Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and <a href="https://useiconic.com/open">Iconic</a><p class="text-right">Time: {% now "h:m:s" %}</p>
             </div>
             <!-- <div class="container text-center">
                 <p>Thanks for visiting!</p>
